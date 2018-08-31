@@ -1,9 +1,12 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const stylePlugin = new ExtractTextPlugin("./src/assets/css/index.css");
 const htmlPlugin = new HtmlWebPackPlugin({
     favicon: 'public/favicon.ico',
     template: "./public/index.html",
     filename: "./index.html"
 });
+
 module.exports = {
     module: {
         rules: [
@@ -24,7 +27,7 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: ["style-loader", "css-loader"]
+                use: ["style-loader", "css-loader"],
             },
             {
                 test: /\.(jpe?g|png|gif|svg)$/i,
