@@ -4,7 +4,7 @@ React is mostly used for Single Page Applications.
 
 Yet it’s possible to integrate the library into any website with webpack and Babel.
 
-![image](https://github.com/asifvora/webpack-react/master/webpack4-react-babel-768x288.png)
+![image](https://github.com/asifvora/webpack-react/master/webpack4-react-babel.png)
 
 ## Getting Started
 
