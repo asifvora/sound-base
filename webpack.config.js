@@ -1,5 +1,7 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const htmlPlugin = new HtmlWebPackPlugin({
+    title: 'My App',
+    favicon: './public/favicon.ico',
     template: "./public/index.html",
     filename: "./index.html"
 });
@@ -27,8 +29,17 @@ module.exports = {
             },
             {
                 test: /\.(jpe?g|png|gif|svg)$/i,
-                loader: "file-loader",
-            }
+                loader: 'file-loader?name=[name].[ext]'
+            },
+            {
+                test: /favicon\.ico$/,
+                loader: "url-loader",
+                query: { mimetype: "image/x-icon" },
+                query: {
+                    limit: 1,
+                    name: '[name].[ext]',
+                },
+            },
         ]
     },
     plugins: [htmlPlugin],
