@@ -1,4 +1,8 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const htmlPlugin = new HtmlWebPackPlugin({
+    template: "./public/index.html",
+    filename: "./index.html"
+});
 module.exports = {
     module: {
         rules: [
@@ -20,13 +24,20 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: ["style-loader", "css-loader"]
+            },
+            {
+                test: /\.(jpe?g|png|gif|svg)$/i,
+                loader: "file-loader?name=/src/assets/img/[name].[ext]"
             }
         ]
     },
-    plugins: [
-        new HtmlWebPackPlugin({
-            template: "./public/index.html",
-            filename: "./public/index.html"
-        })
-    ]
+    plugins: [htmlPlugin],
+    // Enable importing JS files without specifying their's extenstion
+    // So we can write:
+    // import MyComponent from './my-component';
+    // Instead of:
+    // import MyComponent from './my-component.jsx';
+    resolve: {
+        extensions: ['.js', '.jsx', '.css'],
+    }
 };
