@@ -1,6 +1,5 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const htmlPlugin = new HtmlWebPackPlugin({
-    title: 'My App',
     favicon: 'public/favicon.ico',
     template: "./public/index.html",
     filename: "./index.html"
