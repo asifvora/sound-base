@@ -4,15 +4,11 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
-const htmlPlugin = new HtmlWebPackPlugin({
-    favicon: 'public/favicon.ico',
-    template: "./public/index.html",
-    filename: "./index.html"
-});
-const cssPlugin = new MiniCssExtractPlugin({
-    filename: '[name].css',
-    chunkFilename: '[name].css',
-});
+const htmlPlugin = new HtmlWebPackPlugin({ template: "./public/index.html", filename: "./index.html" });
+const cssPlugin = new MiniCssExtractPlugin({ filename: '[name].css', chunkFilename: '[name].css' });
+const cleanPlugin = new CleanWebpackPlugin(['dist']);
+const generateSWPlugin = new WorkboxPlugin.GenerateSW({ clientsClaim: true, skipWaiting: true });
+const uglifyPlugin = new UglifyJsPlugin({ cache: true, parallel: true, sourceMap: true });
 
 module.exports = {
     module: {
@@ -57,16 +53,9 @@ module.exports = {
         ]
     },
     optimization: {
-        minimizer: [
-            new UglifyJsPlugin({
-                cache: true,
-                parallel: true,
-                sourceMap: true // set to true if you want JS source maps
-            }),
-            new OptimizeCSSAssetsPlugin({})
-        ]
+        minimizer: [uglifyPlugin, new OptimizeCSSAssetsPlugin({})]
     },
-    plugins: [new CleanWebpackPlugin(['dist']), htmlPlugin, cssPlugin, new WorkboxPlugin.GenerateSW({ clientsClaim: true, skipWaiting: true })],
+    plugins: [cleanPlugin, htmlPlugin, cssPlugin, generateSWPlugin],
     resolve: {
         extensions: ['.js', '.jsx', '.css'],
     }
