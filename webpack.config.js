@@ -1,14 +1,15 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const htmlPlugin = new HtmlWebPackPlugin({
     favicon: 'public/favicon.ico',
     template: "./public/index.html",
     filename: "./index.html"
 });
 const cssPlugin = new MiniCssExtractPlugin({
-    filename: "[name].css",
-    chunkFilename: "[id].css"
+    filename: '[name].css',
+    chunkFilename: '[name].css',
 });
 
 module.exports = {
@@ -30,16 +31,13 @@ module.exports = {
                 ]
             },
             {
-                test: /\.css$/,
+                test: /\.(sa|sc|c)ss$/, // /\.css$/,
                 use: [
-                    {
-                        loader: MiniCssExtractPlugin.loader,
-                        options: {
-                            publicPath: '../'
-                        }
-                    },
-                    "css-loader"
-                ]
+                    MiniCssExtractPlugin.loader,
+                    'css-loader',
+                    // 'postcss-loader',
+                    // 'sass-loader',
+                ],
             },
             {
                 test: /\.(jpe?g|png|gif|svg)$/i,
@@ -56,6 +54,16 @@ module.exports = {
             },
         ]
     },
+    optimization: {
+        minimizer: [
+          new UglifyJsPlugin({
+            cache: true,
+            parallel: true,
+            sourceMap: true // set to true if you want JS source maps
+          }),
+          new OptimizeCSSAssetsPlugin({})
+        ]
+      },
     plugins: [htmlPlugin, cssPlugin],
     resolve: {
         extensions: ['.js', '.jsx', '.css'],
