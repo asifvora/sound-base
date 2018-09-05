@@ -2,6 +2,8 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 const htmlPlugin = new HtmlWebPackPlugin({
     favicon: 'public/favicon.ico',
     template: "./public/index.html",
@@ -56,15 +58,15 @@ module.exports = {
     },
     optimization: {
         minimizer: [
-          new UglifyJsPlugin({
-            cache: true,
-            parallel: true,
-            sourceMap: true // set to true if you want JS source maps
-          }),
-          new OptimizeCSSAssetsPlugin({})
+            new UglifyJsPlugin({
+                cache: true,
+                parallel: true,
+                sourceMap: true // set to true if you want JS source maps
+            }),
+            new OptimizeCSSAssetsPlugin({})
         ]
-      },
-    plugins: [htmlPlugin, cssPlugin],
+    },
+    plugins: [new CleanWebpackPlugin(['dist']), htmlPlugin, cssPlugin, new WorkboxPlugin.GenerateSW({ clientsClaim: true, skipWaiting: true })],
     resolve: {
         extensions: ['.js', '.jsx', '.css'],
     }
