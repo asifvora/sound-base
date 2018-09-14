@@ -4,7 +4,7 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
-const htmlPlugin = new HtmlWebPackPlugin({ template: "./public/index.html", filename: "./index.html" });
+const htmlPlugin = new HtmlWebPackPlugin({ favicon: 'public/favicon.ico', template: "./public/index.html", filename: "./index.html" });
 const cssPlugin = new MiniCssExtractPlugin({ filename: '[name].css', chunkFilename: '[name].css' });
 const cleanPlugin = new CleanWebpackPlugin(['dist']);
 const generateSWPlugin = new WorkboxPlugin.GenerateSW({ clientsClaim: true, skipWaiting: true });
@@ -40,6 +40,15 @@ module.exports = {
             {
                 test: /\.(jpe?g|png|gif|svg)$/i,
                 loader: 'file-loader?name=[name].[ext]'
+            },
+            {
+                test: /favicon\.ico$/,
+                loader: "url-loader",
+                query: { mimetype: "image/x-icon" },
+                query: {
+                    limit: 1,
+                    name: '[name].[ext]',
+                },
             }
         ]
     },
