@@ -57,6 +57,6 @@ module.exports = {
     },
     plugins: [cleanPlugin, htmlPlugin, cssPlugin, generateSWPlugin],
     resolve: {
-        extensions: ['.js', '.jsx', '.css'],
+        extensions: ['.js', '.jsx', '.css', 'png'],
     }
 };
