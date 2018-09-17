@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from '../assets/img/react.png';
 class App extends Component {
   render() {
+    let date = new Date();
     return (
       <div className="App">
         <header className="App-header">
@@ -9,7 +10,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <p className="App-intro">
-          Hello World {new Date().toString()}
+          Hello World {date.getTime()}
         </p>
       </div>
     );
