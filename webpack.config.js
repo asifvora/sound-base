@@ -11,6 +11,11 @@ const generateSWPlugin = new WorkboxPlugin.GenerateSW({ clientsClaim: true, skip
 const uglifyPlugin = new UglifyJsPlugin({ cache: true, parallel: true, sourceMap: true });
 
 module.exports = {
+    entry: './src/index.js',
+    output: {
+        path: __dirname + '/dist',
+        filename: 'main.js'
+    },
     module: {
         rules: [
             {
