@@ -25,6 +25,7 @@
     "image-webpack-loader": "^4.3.1",
     "mini-css-extract-plugin": "^0.4.2",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "path": "^0.12.7",
     "postcss-loader": "^3.0.0",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",

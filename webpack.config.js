@@ -1,4 +1,5 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
@@ -13,7 +14,7 @@ const uglifyPlugin = new UglifyJsPlugin({ cache: true, parallel: true, sourceMap
 module.exports = {
     entry: './src/index.js',
     output: {
-        path: __dirname + '/dist',
+        path: path.resolve(__dirname, './dist'),
         filename: 'main.js'
     },
     module: {
