@@ -1,3 +1,5 @@
+'use strict';
+
 import { request } from './HttpRequests';
 
 const API = {

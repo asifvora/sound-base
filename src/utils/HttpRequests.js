@@ -1,3 +1,5 @@
+'use strict';
+
 const request = {
     get: (url) => {
         return fetch(url)

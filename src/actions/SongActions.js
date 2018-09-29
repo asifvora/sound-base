@@ -1,3 +1,5 @@
+'use strict';
+
 import * as types from '../constants';
 import { API } from '../utils/API';
 

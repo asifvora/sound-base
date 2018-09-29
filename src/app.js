@@ -1,3 +1,5 @@
+'use strict';
+
 import React, { Component } from 'react';
 import logo from './assets/img/react.png';
 class App extends Component {
