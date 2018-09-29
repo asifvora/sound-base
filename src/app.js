@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 class App extends Component {
-  
+
   render() {
     return (
       <div>
@@ -72,11 +72,11 @@ class App extends Component {
                   <div className="row__cell">
                     <div className="songs-body-card ">
                       <div className="songs-body-card__inner">
-                        <div className="songs-body-card__artwork" style={{ backgroundImage: 'url(&quot;https://i1.sndcdn.com/artworks-000100709675-aebru6-t300x300.jpg&quot;)' }}>
+                        <div className="songs-body-card__artwork" style={{ backgroundImage: 'url(https://i1.sndcdn.com/artworks-000100709675-aebru6-t300x300.jpg)' }}>
                           <div className="artwork-play " role="button" ><i className="artwork-play__icon ion-ios-play"></i></div>
                         </div>
                         <div className="songs-body-card__main">
-                          <div className="songs-body-card__avatar" style={{ backgroundImage: 'url(&quot;https://i1.sndcdn.com/artworks-000100709675-aebru6-t300x300.jpg&quot;)' }}></div>
+                          <div className="songs-body-card__avatar" style={{ backgroundImage: 'url(https://i1.sndcdn.com/artworks-000100709675-aebru6-t300x300.jpg)' }}></div>
                           <div className="songs-body-card__details"><a className="songs-body-card__title" href="https://soundredux.io/#/songs/182219480"
                             title="Tu Har Lamha - Full Song - Arijit Singh - Khamoshiyan 2015">Khamoshiyan 2015</a><a
                               className="songs-body-card__username" href="https://soundredux.io/#/users/128479062" title="Bollywood unplugged">Bollywood
@@ -94,11 +94,11 @@ class App extends Component {
                   <div className="row__cell">
                     <div className="songs-body-card ">
                       <div className="songs-body-card__inner">
-                        <div className="songs-body-card__artwork" style={{ backgroundImage: 'url(&quot;https://i1.sndcdn.com/artworks-000100709675-aebru6-t300x300.jpg&quot;)' }}>
+                        <div className="songs-body-card__artwork" style={{ backgroundImage: 'url(https://i1.sndcdn.com/artworks-000100709675-aebru6-t300x300.jpg)' }}>
                           <div className="artwork-play " role="button"><i className="artwork-play__icon ion-ios-play"></i></div>
                         </div>
                         <div className="songs-body-card__main">
-                          <div className="songs-body-card__avatar" style={{ backgroundImage: 'url(&quot;https://i1.sndcdn.com/artworks-000100709675-aebru6-t300x300.jpg&quot;)' }}></div>
+                          <div className="songs-body-card__avatar" style={{ backgroundImage: 'url(https://i1.sndcdn.com/artworks-000100709675-aebru6-t300x300.jpg)' }}></div>
                           <div className="songs-body-card__details"><a className="songs-body-card__title" href="https://soundredux.io/#/songs/161934289"
                             title="Sukoon Mila (Mary Kom) - Arijit Singh 2014 New song">Arijit Singh 2014 New song</a><a
                               className="songs-body-card__username" href="https://soundredux.io/#/users/82907931" title="Latest songs">Latest
@@ -116,11 +116,11 @@ class App extends Component {
                   <div className="row__cell">
                     <div className="songs-body-card ">
                       <div className="songs-body-card__inner">
-                        <div className="songs-body-card__artwork" style={{ backgroundImage: 'url(&quot;https://i1.sndcdn.com/artworks-000100709675-aebru6-t300x300.jpg&quot;)' }}>
+                        <div className="songs-body-card__artwork" style={{ backgroundImage: 'url(https://i1.sndcdn.com/artworks-000100709675-aebru6-t300x300.jpg)' }}>
                           <div className="artwork-play " role="button"><i className="artwork-play__icon ion-ios-play"></i></div>
                         </div>
                         <div className="songs-body-card__main">
-                          <div className="songs-body-card__avatar" style={{ backgroundImage: 'url(&quot;https://i1.sndcdn.com/artworks-000100709675-aebru6-t300x300.jpg&quot;)' }}></div>
+                          <div className="songs-body-card__avatar" style={{ backgroundImage: 'url(https://i1.sndcdn.com/artworks-000100709675-aebru6-t300x300.jpg)' }}></div>
                           <div className="songs-body-card__details"><a className="songs-body-card__title" href="https://soundredux.io/#/songs/135178449"
                             title="Bus rona mat | Aashiqui 3 | Leaked Song">Bus rona mat | Aashiqui 3 | Leaked Song</a><a
                               className="songs-body-card__username" href="https://soundredux.io/#/users/80507487" title="Bollywood Studios">Bollywood
@@ -138,11 +138,11 @@ class App extends Component {
                   <div className="row__cell">
                     <div className="songs-body-card ">
                       <div className="songs-body-card__inner">
-                        <div className="songs-body-card__artwork" style={{ backgroundImage: 'url(&quot;https://i1.sndcdn.com/artworks-000100709675-aebru6-t300x300.jpg&quot;)' }}>
+                        <div className="songs-body-card__artwork" style={{ backgroundImage: 'url(https://i1.sndcdn.com/artworks-000100709675-aebru6-t300x300.jpg)' }}>
                           <div className="artwork-play " role="button"><i className="artwork-play__icon ion-ios-play"></i></div>
                         </div>
                         <div className="songs-body-card__main">
-                          <div className="songs-body-card__avatar" style={{ backgroundImage: 'url(&quot;https://i1.sndcdn.com/artworks-000100709675-aebru6-t300x300.jpg&quot;)' }}></div>
+                          <div className="songs-body-card__avatar" style={{ backgroundImage: 'url(https://i1.sndcdn.com/artworks-000100709675-aebru6-t300x300.jpg)' }}></div>
                           <div className="songs-body-card__details"><a className="songs-body-card__title" href="https://soundredux.io/#/songs/408913548"
                             title="New Vs Old Bollywood Songs Mashup  Raj Barman  Deepshikha  Bollywood Songs Medley">New
                             Vs Old Bollywood Songs Mashup Raj Barman Deepshikha Bollywood Songs Medley</a><a className="songs-body-card__username"
@@ -160,11 +160,11 @@ class App extends Component {
                   <div className="row__cell">
                     <div className="songs-body-card ">
                       <div className="songs-body-card__inner">
-                        <div className="songs-body-card__artwork" style={{ backgroundImage: `url(&quot;&quot;)` }}>
+                        <div className="songs-body-card__artwork" style={{ backgroundImage: `url(https://i1.sndcdn.com/artworks-000100709675-aebru6-t300x300.jpg)` }}>
                           <div className="artwork-play " role="button"><i className="artwork-play__icon ion-ios-play"></i></div>
                         </div>
                         <div className="songs-body-card__main">
-                          <div className="songs-body-card__avatar" style={{ backgroundImage: 'url(&quot;https://i1.sndcdn.com/artworks-000100709675-aebru6-t300x300.jpg&quot;)' }}></div>
+                          <div className="songs-body-card__avatar" style={{ backgroundImage: 'url(https://i1.sndcdn.com/artworks-000100709675-aebru6-t300x300.jpg)' }}></div>
                           <div className="songs-body-card__details"><a className="songs-body-card__title" href="https://soundredux.io/#/songs/1038823"
                             title="Dard-E-Tanhai ( Jashnn )">Dard-E-Tanhai</a><a className="songs-body-card__username" href="https://soundredux.io/#/users/420139"
                               title="Bollywood">Bollywood</a></div>
@@ -189,7 +189,7 @@ class App extends Component {
             <div className="player__inner container">
               <div className="player__section player__section--song">
                 <div className="player__song">
-                  <div className="player__song__artwork" style={{ backgroundImage: 'url(&quot;https://i1.sndcdn.com/artworks-000100709675-aebru6-t300x300.jpg&quot;)' }}></div>
+                  <div className="player__song__artwork" style={{ backgroundImage: 'url(https://i1.sndcdn.com/artworks-000100709675-aebru6-t300x300.jpg)' }}></div>
                   <div className="player__song__main"><a className="player__song__title" href="https://soundredux.io/#/songs/203407143"
                     title="">Bezubaan Piku 2015 (official)</a><a className="player__song__username" href="https://soundredux.io/#/users/149149659"
                       title="">bollywood latest songs ✔️</a></div>
