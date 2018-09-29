@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="description" content="music is a Soundcloud music player written in React and Redux. Full source code available at github.com/asifvora/">
+  <meta name="keywords" content="React, Redux, Soundcloud, Music, Javascript">
+  <meta name="author" content="asif vora @asifvora">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+  <link rel="icon" href="https://soundredux.io/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300">
+  <title>mac</title>
+  <link href="./css/main.css" rel="stylesheet">
+</head>
+
+<body data-gr-c-s-loaded="true" style="overflow: auto;">
+  <div id="root">
+    <div>
+      <div class="nav">
+        <div class="nav__inner container">
+          <div class="nav__section"><i class="nav__logo__icon ion-radio-waves"></i><a class="nav__logo__text" href="https://soundredux.io/#/songs"
+              title="">mac</a></div>
+          <div class="nav__section nav__section--session"></div>
+          <div class="nav__section nav__section--search">
+            <div class="nav-search"><i class="nav-search__icon ion-search"></i><input type="text" class="nav-search__input"
+                placeholder="SEARCH"></div>
+          </div>
+          <div class="nav__section nav__section--user">
+            <div class="popover nav-user popover--right">
+              <span class="popover__trigger" role="button" tabindex="0">
+                <div class="nav-user__trigger"><i class="nav-user__icon ion-person"></i><i class="nav-user__chevron ion-chevron-down"></i></div>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="">
+        <div class="songs-header ">
+          <div class="songs-header__inner">
+            <div class="songs-header__sections container">
+              <div class="songs-header__section songs-header__section--genres">
+                <div class="songs-header__genres ">
+                  <div class="songs-header__genres__active" role="button" tabindex="0">genre</div>
+                  <div class="songs-header__genres__main">
+                    <div class="songs-header__genre "><a class="songs-header__genre__text" href="https://soundredux.io/#/songs?g=chill"
+                        title="">chill</a></div>
+                    <div class="songs-header__genre "><a class="songs-header__genre__text" href="https://soundredux.io/#/songs?g=deep"
+                        title="">deep</a></div>
+                    <div class="songs-header__genre "><a class="songs-header__genre__text" href="https://soundredux.io/#/songs?g=dubstep"
+                        title="">dubstep</a></div>
+                    <div class="songs-header__genre "><a class="songs-header__genre__text" href="https://soundredux.io/#/songs?g=house"
+                        title="">house</a></div>
+                    <div class="songs-header__genre "><a class="songs-header__genre__text" href="https://soundredux.io/#/songs?g=progressive"
+                        title="">progressive</a></div>
+                    <div class="songs-header__genre "><a class="songs-header__genre__text" href="https://soundredux.io/#/songs?g=tech"
+                        title="">tech</a></div>
+                    <div class="songs-header__genre "><a class="songs-header__genre__text" href="https://soundredux.io/#/songs?g=trance"
+                        title="">trance</a></div>
+                    <div class="songs-header__genre "><a class="songs-header__genre__text" href="https://soundredux.io/#/songs?g=tropical"
+                        title="">tropical</a></div>
+                  </div>
+                </div>
+              </div>
+              <div class="songs-header__section songs-header__section--time">
+                <div class="songs-header__times">
+                  <div class="songs-header__times__inner"><i class="songs-header__times__icon ion-funnel"></i><a class="songs-header__time "
+                      href="https://soundredux.io/#/songs?t=7&amp;q=bollywood" title="">7 days</a><a class="songs-header__time "
+                      href="https://soundredux.io/#/songs?t=30&amp;q=bollywood" title="">30 days</a><a class="songs-header__time "
+                      href="https://soundredux.io/#/songs?t=90&amp;q=bollywood" title="">90 days</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="songs-body">
+            <div>
+              <div class="row">
+                <div class="row__cell">
+                  <div class="songs-body-card ">
+                    <div class="songs-body-card__inner">
+                      <div class="songs-body-card__artwork" style="background-image: url(&quot;https://i1.sndcdn.com/artworks-000100709675-aebru6-t300x300.jpg&quot;);">
+                        <div class="artwork-play " role="button" tabindex="0"><i class="artwork-play__icon ion-ios-play"></i></div>
+                      </div>
+                      <div class="songs-body-card__main">
+                        <div class="songs-body-card__avatar" style="background-image: url(&quot;https://i1.sndcdn.com/avatars-000120408562-1tw889-large.jpg&quot;);"></div>
+                        <div class="songs-body-card__details"><a class="songs-body-card__title" href="https://soundredux.io/#/songs/182219480"
+                            title="Tu Har Lamha - Full Song - Arijit Singh - Khamoshiyan 2015">Khamoshiyan 2015</a><a
+                            class="songs-body-card__username" href="https://soundredux.io/#/users/128479062" title="Bollywood unplugged">Bollywood
+                            unplugged</a></div>
+                      </div>
+                      <div class="popover heart songs-body-card__heart popover--right">
+                        <span class="popover__trigger" role="button" tabindex="0">
+                          <div class="heart__inner"><i class="heart__icon ion-ios-heart"></i></div>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="songs-body-card__mobile-events" role="button" tabindex="0"></div>
+                  </div>
+                </div>
+                <div class="row__cell">
+                  <div class="songs-body-card ">
+                    <div class="songs-body-card__inner">
+                      <div class="songs-body-card__artwork" style="background-image: url(&quot;https://i1.sndcdn.com/artworks-000087288225-qnmdus-t300x300.jpg&quot;);">
+                        <div class="artwork-play " role="button" tabindex="0"><i class="artwork-play__icon ion-ios-play"></i></div>
+                      </div>
+                      <div class="songs-body-card__main">
+                        <div class="songs-body-card__avatar" style="background-image: url(&quot;https://i1.sndcdn.com/avatars-000159207520-6aaraa-large.jpg&quot;);"></div>
+                        <div class="songs-body-card__details"><a class="songs-body-card__title" href="https://soundredux.io/#/songs/161934289"
+                            title="Sukoon Mila (Mary Kom) - Arijit Singh 2014 New song">Arijit Singh 2014 New song</a><a
+                            class="songs-body-card__username" href="https://soundredux.io/#/users/82907931" title="Latest songs">Latest
+                            songs</a></div>
+                      </div>
+                      <div class="popover heart songs-body-card__heart popover--right">
+                        <span class="popover__trigger" role="button" tabindex="0">
+                          <div class="heart__inner"><i class="heart__icon ion-ios-heart"></i></div>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="songs-body-card__mobile-events" role="button" tabindex="0"></div>
+                  </div>
+                </div>
+                <div class="row__cell">
+                  <div class="songs-body-card ">
+                    <div class="songs-body-card__inner">
+                      <div class="songs-body-card__artwork" style="background-image: url(&quot;https://i1.sndcdn.com/artworks-000086458932-2482l1-t300x300.jpg&quot;);">
+                        <div class="artwork-play " role="button" tabindex="0"><i class="artwork-play__icon ion-ios-play"></i></div>
+                      </div>
+                      <div class="songs-body-card__main">
+                        <div class="songs-body-card__avatar" style="background-image: url(&quot;https://i1.sndcdn.com/avatars-000122286670-e294t0-large.jpg&quot;);"></div>
+                        <div class="songs-body-card__details"><a class="songs-body-card__title" href="https://soundredux.io/#/songs/135178449"
+                            title="Bus rona mat | Aashiqui 3 | Leaked Song">Bus rona mat | Aashiqui 3 | Leaked Song</a><a
+                            class="songs-body-card__username" href="https://soundredux.io/#/users/80507487" title="Bollywood Studios">Bollywood
+                            Studios</a></div>
+                      </div>
+                      <div class="popover heart songs-body-card__heart popover--right">
+                        <span class="popover__trigger" role="button" tabindex="0">
+                          <div class="heart__inner"><i class="heart__icon ion-ios-heart"></i></div>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="songs-body-card__mobile-events" role="button" tabindex="0"></div>
+                  </div>
+                </div>
+                <div class="row__cell">
+                  <div class="songs-body-card ">
+                    <div class="songs-body-card__inner">
+                      <div class="songs-body-card__artwork" style="background-image: url(&quot;https://i1.sndcdn.com/artworks-000311268867-se1s0k-t300x300.jpg&quot;);">
+                        <div class="artwork-play " role="button" tabindex="0"><i class="artwork-play__icon ion-ios-play"></i></div>
+                      </div>
+                      <div class="songs-body-card__main">
+                        <div class="songs-body-card__avatar" style="background-image: url(&quot;https://i1.sndcdn.com/avatars-000476960631-kic439-large.jpg&quot;);"></div>
+                        <div class="songs-body-card__details"><a class="songs-body-card__title" href="https://soundredux.io/#/songs/408913548"
+                            title="New Vs Old Bollywood Songs Mashup  Raj Barman  Deepshikha  Bollywood Songs Medley">New
+                            Vs Old Bollywood Songs Mashup Raj Barman Deepshikha Bollywood Songs Medley</a><a class="songs-body-card__username"
+                            href="https://soundredux.io/#/users/108487307" title="پاولينا ليسنياک">پاولينا ليسنياک</a></div>
+                      </div>
+                      <div class="popover heart songs-body-card__heart popover--right">
+                        <span class="popover__trigger" role="button" tabindex="0">
+                          <div class="heart__inner"><i class="heart__icon ion-ios-heart"></i></div>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="songs-body-card__mobile-events" role="button" tabindex="0"></div>
+                  </div>
+                </div>
+                <div class="row__cell">
+                  <div class="songs-body-card ">
+                    <div class="songs-body-card__inner">
+                      <div class="songs-body-card__artwork" style="background-image: url(&quot;&quot;);">
+                        <div class="artwork-play " role="button" tabindex="0"><i class="artwork-play__icon ion-ios-play"></i></div>
+                      </div>
+                      <div class="songs-body-card__main">
+                        <div class="songs-body-card__avatar" style="background-image: url(https://a1.sndcdn.com/images/default_avatar_large.png?1536848824&quot;);"></div>
+                        <div class="songs-body-card__details"><a class="songs-body-card__title" href="https://soundredux.io/#/songs/1038823"
+                            title="Dard-E-Tanhai ( Jashnn )">Dard-E-Tanhai</a><a class="songs-body-card__username" href="https://soundredux.io/#/users/420139"
+                            title="Bollywood">Bollywood</a></div>
+                      </div>
+                      <div class="popover heart songs-body-card__heart popover--right">
+                        <span class="popover__trigger" role="button" tabindex="0">
+                          <div class="heart__inner"><i class="heart__icon ion-ios-heart"></i></div>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="songs-body-card__mobile-events" role="button" tabindex="0"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <audio id="audio" src="https://api.soundcloud.com/tracks/203407143/stream?client_id=a281614d7f34dc30b665dfcaa3ed7505"></audio>
+        <div class="player">
+          <div class="player__inner container">
+            <div class="player__section player__section--song">
+              <div class="player__song">
+                <div class="player__song__artwork" style="background-image: url(&quot;https://i1.sndcdn.com/artworks-000115251439-f9beg0-large.jpg&quot;);"></div>
+                <div class="player__song__main"><a class="player__song__title" href="https://soundredux.io/#/songs/203407143"
+                    title="">Bezubaan Piku 2015 (official)</a><a class="player__song__username" href="https://soundredux.io/#/users/149149659"
+                    title="">bollywood latest songs ✔️</a></div>
+              </div>
+            </div>
+            <div class="player__section">
+              <div class="player__buttons">
+                <div class="player__button" role="button" tabindex="0"><i class="player__button__icon ion-ios-rewind"></i></div>
+                <div class="player__button" role="button" tabindex="0"><i class="player__button__icon ion-ios-pause"></i></div>
+                <div class="player__button" role="button" tabindex="0"><i class="player__button__icon ion-ios-fastforward"></i></div>
+              </div>
+            </div>
+            <div class="player__section player__section--seek">
+              <div class="slider " role="button" tabindex="0">
+                <div class="slider__bar">
+                  <div class="slider__bar__fill" style="width: 10.6825%;">
+                    <div class="slider__handle" role="button" tabindex="0"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="player__section player__section--time">
+              <div class="player__time">
+                00:36
+                <div class="player__time__separator">/</div>
+                05:37
+              </div>
+            </div>
+            <div class="player__section player__section--options">
+              <div class="player__buttons player__buttons--options">
+                <div class="player__button " role="button" tabindex="0"><i class="player__button__icon ion-loop"></i></div>
+                <div class="player__button " role="button" tabindex="0"><i class="player__button__icon ion-shuffle"></i></div>
+                <div class="player__button " role="button" tabindex="0"><i class="player__button__icon ion-android-list"></i></div>
+                <div class="player__button player__button--volume" role="button" tabindex="0"><i class="player__button__icon ion-android-volume-mute"></i><i
+                    class="player__button__icon player__button__icon--absolute ion-android-volume-down"></i></div>
+              </div>
+            </div>
+            <div class="player__section player__section--volume">
+              <div class="slider " role="button" tabindex="0">
+                <div class="slider__bar">
+                  <div class="slider__bar__fill" style="width: 22%;">
+                    <div class="slider__handle" role="button" tabindex="0"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
