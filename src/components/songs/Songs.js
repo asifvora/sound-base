@@ -2,7 +2,7 @@
 
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchSongLyrics } from "../../actions/SongActions";
+import { fetchSongs, fetchMoreSongs } from "../../actions/SongActions";
 import { spinnerLoader } from "../common";
 
 class Songs extends Component {
@@ -13,16 +13,37 @@ class Songs extends Component {
             isLoading: true,
             success: false,
             songs: [],
-            nextLink: null,
+            nextLink: false,
             limit: 50,
             linkedPartitioning: 1
         }
+        this.handleScroll = this.handleScroll.bind(this);
     }
 
     componentDidMount() {
         let { limit, linkedPartitioning } = this.state;
         let { dispatch } = this.props;
-        dispatch(fetchSongLyrics(limit, linkedPartitioning));
+        dispatch(fetchSongs(limit, linkedPartitioning));
+        window.addEventListener('scroll', this.handleScroll);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.handleScroll);
+    }
+
+    handleScroll(event) {
+        let { nextLink, isLoading } = this.state;
+        const { dispatch } = this.props;
+        console.log('isLoading', isLoading)
+        isLoading === false && this.setState({ isLoading: true }, () => {
+            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+                if (nextLink && this.state.isLoading) {
+                    dispatch(fetchMoreSongs(nextLink));
+                } else {
+                    this.setState({ isLoading: false })
+                }
+            }
+        })
     }
 
     componentWillReceiveProps(nextProps) {
@@ -31,6 +52,13 @@ class Songs extends Component {
                 success: nextProps.songs.success,
                 isLoading: nextProps.songs.isLoading,
                 songs: nextProps.songs.songs,
+                nextLink: nextProps.songs.nextLink,
+            });
+        }
+        if (nextProps.songs.success === true) {
+            this.setState({
+                success: nextProps.songs.success,
+                isLoading: nextProps.songs.isLoading,
                 nextLink: nextProps.songs.nextLink,
             });
         }
@@ -75,7 +103,7 @@ class Songs extends Component {
         return (
             <div className="container">
                 <div className="songs-body">
-                    {success && isLoading === false &&
+                    {success &&
                         <div >
                             <div className="row">
                                 {this.songsList()}
