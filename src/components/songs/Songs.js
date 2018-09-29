@@ -45,17 +45,14 @@ class Songs extends Component {
                     <div className="row__cell" key={key}>
                         <div className="songs-body-card">
                             <div className="songs-body-card__inner">
-                                <div className="songs-body-card__artwork" style={{ backgroundImage: `url(${songs.artwork_url})` }}>
+                                <div className="songs-body-card__artwork" style={{ backgroundImage: `url(${song.artwork_url})` }}>
                                     <div className="artwork-play " role="button" ><i className="artwork-play__icon ion-ios-play"></i></div>
                                 </div>
                                 <div className="songs-body-card__main">
-                                    <div className="songs-body-card__avatar" style={{ backgroundImage: `url(${songs.artwork_url})` }}></div>
+                                    <div className="songs-body-card__avatar" style={{ backgroundImage: `url(${song.user.avatar_url})` }}></div>
                                     <div className="songs-body-card__details">
-                                        <a className="songs-body-card__title" href="#"
-                                            title="Tu Har Lamha - Full Song - Arijit Singh - Khamoshiyan 2015">Khamoshiyan 2015</a>
-                                        <a
-                                            className="songs-body-card__username" href="#" title="Bollywood unplugged">Bollywood
-                                          unplugged</a>
+                                        <a className="songs-body-card__title" href="#" title={song.title ? song.title : ''}>{song.title ? song.title : ''}</a>
+                                        <a className="songs-body-card__username" href="#" title={song.title ? song.title : ''}>{song.title ? song.title : ''}</a>
                                     </div>
                                 </div>
                                 <div className="popover heart songs-body-card__heart popover--right">
@@ -78,8 +75,10 @@ class Songs extends Component {
             <div className="container">
                 <div className="songs-body">
                     {success && isLoading === false &&
-                        <div className="row">
-                            {this.songsList()}
+                        <div >
+                            <div className="row">
+                                {this.songsList()}
+                            </div>
                         </div>
                     }
                 </div>
