@@ -1,6 +1,7 @@
 'use strict';
 
 import * as type from "../constants";
+
 const initialState = {
     isLoading: false,
     nextLink: null,

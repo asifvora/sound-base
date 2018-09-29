@@ -1,7 +1,7 @@
 'use strict';
 
 import { combineReducers } from "redux";
-import songs from './songs';
+import songs from './Songs';
 
 const reducer = combineReducers({
     songs

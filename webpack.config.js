@@ -101,5 +101,8 @@ module.exports = {
     plugins: [cleanPlugin, htmlPlugin, cssPlugin, generateSWPlugin],
     resolve: {
         extensions: ['.js', '.jsx', '.css'],
+    },
+    devServer: {
+        historyApiFallback: true,
     }
 };
