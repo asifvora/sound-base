@@ -2,7 +2,7 @@
 
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchSongs, fetchMoreSongs } from "../../actions/SongActions";
+import { fetchSongs, fetchMoreSongs, playSongRequest } from "../../actions/SongActions";
 import { spinnerLoader } from "../common";
 
 class Songs extends Component {
@@ -25,6 +25,11 @@ class Songs extends Component {
         let { dispatch } = this.props;
         dispatch(fetchSongs(limit, linkedPartitioning));
         window.addEventListener('scroll', this.handleScroll);
+    }
+
+    playSongRequest(song) {
+        let { dispatch } = this.props;
+        dispatch(playSongRequest({ isActive: true, song: song }));
     }
 
     componentWillUnmount() {
@@ -64,13 +69,13 @@ class Songs extends Component {
         }
     }
 
-    songsCard(song, key) {
+    songsCard(song, key, isActive, isActiveId) {
         return (
             <div className="row__cell" key={key} style={{ margin: '7px' }}>
-                <div className="songs-body-card">
+                <div className={isActive && isActiveId === song.id ? `songs-body-card songs-body-card--active` : `songs-body-card`} >
                     <div className="songs-body-card__inner">
-                        <div className="songs-body-card__artwork" style={{ backgroundImage: `url(${song.artwork_url})` }}>
-                            <div className="artwork-play " role="button" ><i className="artwork-play__icon ion-ios-play"></i></div>
+                        <div onClick={() => this.playSongRequest(song)} className="songs-body-card__artwork" style={{ backgroundImage: `url(${song.artwork_url})` }}>
+                            <div className={isActive && isActiveId === song.id ? `artwork-play artwork-play--active` : `artwork-play `} role="button" ><i className={isActive && isActiveId === song.id ? `artwork-play__icon ion-radio-waves` : `artwork-play__icon ion-ios-play`}  ></i></div>
                         </div>
                         <div className="songs-body-card__main">
                             <div className="songs-body-card__avatar" style={{ backgroundImage: `url(${song.user.avatar_url})` }}></div>
@@ -93,9 +98,10 @@ class Songs extends Component {
     }
 
     songsList() {
+        let { activeSong: { isActive, song: { id } } } = this.props;
         let { songs } = this.state;
         return songs && songs.length > 0 ?
-            songs.map((song, key) => { return (this.songsCard(song, key)) }) : 'No songs found.';
+            songs.map((song, key) => { return (this.songsCard(song, key, isActive, id)) }) : 'No songs found.';
     }
 
     render() {

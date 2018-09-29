@@ -81,3 +81,8 @@ function fetchMoreSongFailure(err) {
         type: types.FETCH_MORE_SONG_FAILURE,
     };
 }
+
+/**
+ * playSongRequest
+ */
+export const playSongRequest = (data) => ({ type: types.IS_PLAY_SONG_REQUEST, state: data });
