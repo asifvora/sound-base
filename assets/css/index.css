@@ -1580,6 +1580,7 @@ body{
   box-sizing:border-box
 }
 .row{
+  flex-wrap: wrap;
   display:-webkit-box;
   display:-ms-flexbox;
   display:flex;
@@ -1602,11 +1603,11 @@ body{
   }
 }
 .row__cell+.row__cell{
-  margin-left:20px
+  margin:0
 }
 @media only screen and (min-width:320px) and (max-width:735px){
   .row__cell+.row__cell{
-      margin:0
+      margin: 0
   }
 }
 .sidebar{
@@ -2183,7 +2184,7 @@ body{
   border-bottom-color:#3381b7
 }
 .songs-body{
-  margin:40px 0 80px
+  margin:40px 0 15px
 }
 @media only screen and (min-width:320px) and (max-width:735px){
   .songs-body{

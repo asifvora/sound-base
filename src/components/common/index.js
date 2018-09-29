@@ -4,13 +4,13 @@ import React from "react";
 
 export function spinnerLoader() {
     return (
-        <div className="spinner-container">
-            <div className="spinner">
-                <div className="rect1"></div>
-                <div className="rect2"></div>
-                <div className="rect3"></div>
-                <div className="rect4"></div>
-                <div className="rect5"></div>
+        <div className="loader loader--full">
+            <div className="loader__rects">
+                <div className="loader__rect loader__rect--1"></div>
+                <div className="loader__rect loader__rect--2"></div>
+                <div className="loader__rect loader__rect--3"></div>
+                <div className="loader__rect loader__rect--4"></div>
+                <div className="loader__rect loader__rect--5"></div>
             </div>
         </div>
     )
