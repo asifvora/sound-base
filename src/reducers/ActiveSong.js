@@ -4,6 +4,7 @@ import * as type from "../constants";
 
 const initialState = {
     isActive: false,
+    isPlay: false,
     song: {},
 };
 
@@ -14,6 +15,7 @@ const ActiveSong = (state = initialState, action) => {
             return {
                 ...state,
                 isActive: action.state.isActive,
+                isPlay: action.state.isPlay,
                 song: action.state.song,
             };
         default:
