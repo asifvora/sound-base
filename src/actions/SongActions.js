@@ -45,7 +45,6 @@ function fetchSongFailure(err) {
  * fetching more songs api call
  */
 export function fetchMoreSongs(nextLink) {
-    console.log('nextLink', nextLink)
     return (dispatch, getState) => {
         const { songs: { songs } } = getState();
         API.getSongs(nextLink)

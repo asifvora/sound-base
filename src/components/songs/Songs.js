@@ -34,11 +34,11 @@ class Songs extends Component {
     handleScroll(event) {
         let { nextLink, isLoading } = this.state;
         const { dispatch } = this.props;
-        console.log('isLoading', isLoading)
-        isLoading === false && this.setState({ isLoading: true }, () => {
+        this.setState({ isLoading: true }, () => {
             if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-                if (nextLink && this.state.isLoading) {
+                if (this.state.nextLink !== false) {
                     dispatch(fetchMoreSongs(nextLink));
+                    this.setState({ nextLink: false, isFetching: false });
                 } else {
                     this.setState({ isLoading: false })
                 }
@@ -55,7 +55,7 @@ class Songs extends Component {
                 nextLink: nextProps.songs.nextLink,
             });
         }
-        if (nextProps.songs.success === true) {
+        if (nextProps.songs.success === false) {
             this.setState({
                 success: nextProps.songs.success,
                 isLoading: nextProps.songs.isLoading,
@@ -64,9 +64,9 @@ class Songs extends Component {
         }
     }
 
-    songsCard(song) {
+    songsCard(song, key) {
         return (
-            <div className="row__cell" key={song.id} style={{ margin: '7px' }}>
+            <div className="row__cell" key={key} style={{ margin: '7px' }}>
                 <div className="songs-body-card">
                     <div className="songs-body-card__inner">
                         <div className="songs-body-card__artwork" style={{ backgroundImage: `url(${song.artwork_url})` }}>
@@ -95,7 +95,7 @@ class Songs extends Component {
     songsList() {
         let { songs } = this.state;
         return songs && songs.length > 0 ?
-            songs.map((song, key) => { return (this.songsCard(song)) }) : 'No songs found.';
+            songs.map((song, key) => { return (this.songsCard(song, key)) }) : 'No songs found.';
     }
 
     render() {
