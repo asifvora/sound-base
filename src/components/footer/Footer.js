@@ -13,7 +13,8 @@ class Footer extends Component {
     render() {
 
         return (
-            <Player />
+            // <Player />
+            <div />
         );
     }
 }

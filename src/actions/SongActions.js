@@ -6,19 +6,19 @@ import { API } from '../utils/API';
 /**
  * fetching songs api call
  */
-export function fetchSongLyrics(songSlug) {
+export function fetchSongLyrics(limit, linkedPartitioning) {
     return dispatch =>
-        API.getSongs(`${process.env.API_ENDPOINT}songs`)
+        API.getSongs(`https://api.soundcloud.com/tracks?client_id=a281614d7f34dc30b665dfcaa3ed7505&limit=${limit}&linked_partitioning=${linkedPartitioning}`)
             .then(json => dispatch(fetchSongSuccess(json)))
             .catch(err => dispatch(fetchSongFailure(err)));
 }
 
-function fetchSongSuccess(json) {
+function fetchSongSuccess({ collection = [], next_href = false }) {
     let response = {
-        isLoading: false,
-        nextLink: null,
         success: true,
-        songs: [],
+        isLoading: false,
+        nextLink: next_href ? next_href : false,
+        songs: collection ? collection : [],
     };
 
     return {
@@ -29,9 +29,9 @@ function fetchSongSuccess(json) {
 
 function fetchSongFailure(err) {
     let response = {
-        isLoading: false,
-        nextLink: null,
         success: false,
+        isLoading: false,
+        nextLink: false,
         error: err
     };
 

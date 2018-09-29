@@ -3,18 +3,22 @@
 import * as type from "../constants";
 
 const initialState = {
-    isLoading: false,
-    nextLink: null,
-    success: true,
+    success: false,
+    isLoading: true,
+    nextLink: false,
     songs: [],
 };
 
 const songs = (state = initialState, action) => {
+    console.log('action.type', action.type)
     switch (action.type) {
-        case type.FETCH_SONG:
+        case type.FETCH_SONG_SUCCESS:
             return {
                 ...state,
-                songs: action.state.songs
+                success: action.state.success,
+                isLoading: action.state.isLoading,
+                nextLink: action.state.nextLink,
+                songs: action.state.songs,
             };
         default:
             return state;
