@@ -161,9 +161,9 @@ class Player extends Component {
                         </div>
                         <div className="player__section player__section--options">
                             <div className="player__buttons player__buttons--options">
-                                <div className="player__button " role="button" ><i className="player__button__icon ion-loop"></i></div>
+                                {/* <div className="player__button " role="button" ><i className="player__button__icon ion-loop"></i></div>
                                 <div className="player__button " role="button" ><i className="player__button__icon ion-shuffle"></i></div>
-                                <div className="player__button " role="button"><i className="player__button__icon ion-android-list"></i></div>
+                                <div className="player__button " role="button"><i className="player__button__icon ion-android-list"></i></div> */}
                                 <div
                                     className="player__button player__button--volume"
                                     onClick={this.toggleMuted}
