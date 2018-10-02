@@ -9,7 +9,7 @@ const initialState = {
     songs: [],
 };
 
-const songs = (state = initialState, action) => {
+const Songs = (state = initialState, action) => {
 
     switch (action.type) {
         case type.FETCH_SONG_SUCCESS:
@@ -48,4 +48,4 @@ const songs = (state = initialState, action) => {
             return state;
     }
 };
-export default songs;
+export default Songs;
