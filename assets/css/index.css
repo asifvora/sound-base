@@ -1018,7 +1018,8 @@ a:hover{
   position:absolute;
   top:20px;
   left:0;
-  width:100%
+  width:100%;
+  margin-bottom: 80px;
 }
 .loader__rects{
   display:-webkit-box;

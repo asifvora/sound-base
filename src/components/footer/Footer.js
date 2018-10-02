@@ -2,6 +2,7 @@
 
 import React, { Component } from "react";
 import { Player } from "../player";
+import { connect } from "react-redux";
 import { withRouter } from 'react-router-dom';
 
 class Footer extends Component {
@@ -11,12 +12,13 @@ class Footer extends Component {
     }
 
     render() {
-
         return (
-            // <Player />
-            <div />
+            <Player />
         );
     }
 }
 
-export default withRouter(Footer);
+const mapStateToProps = state => {
+    return state;
+};
+export default withRouter(connect(mapStateToProps)(Footer));

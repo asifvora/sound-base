@@ -1,26 +1,141 @@
 'use strict';
 
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Slider } from '../Slider';
+import * as types from '../../constants';
+import { formatSeconds } from '../../utils/NumberUtils';
+import volumeClassName from '../../utils/PlayerUtils';
 
 class Player extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            volume: 0,
+            currentTime: 0,
+            muted: false,
+        }
+        this.audioElement = null;
+        this.onEnded = this.onEnded.bind(this);
+        this.onLoadedMetadata = this.onLoadedMetadata.bind(this);
+        this.onLoadStart = this.onLoadStart.bind(this);
+        this.onPause = this.onPause.bind(this);
+        this.onPlay = this.onPlay.bind(this);
+        this.onTimeUpdate = this.onTimeUpdate.bind(this);
+        this.onVolumeChange = this.onVolumeChange.bind(this);
+        this.changeCurrentTime = this.changeCurrentTime.bind(this);
+        this.changeVolume = this.changeVolume.bind(this);
+        this.toggleMuted = this.toggleMuted.bind(this);
+        this.togglePlay = this.togglePlay.bind(this);
     }
 
-    render() {
+    componentDidMount() {
+        const { audioElement } = this;
+        audioElement && audioElement.play();
+    }
 
+    componentDidUpdate(prevProps) {
+        const { audioElement, props } = this;
+        const { audioUrl } = props;
+        if (prevProps.audioUrl !== audioUrl) {
+            audioElement && audioElement.play();
+        }
+    }
+
+    onEnded() {
+        // const { playNextSong } = this.props;
+        // playNextSong();
+    }
+
+    onLoadedMetadata() {
+        // const { audioElement, props } = this;
+        // const { onLoadedMetadata } = props;
+        // onLoadedMetadata(Math.floor(audioElement.duration));
+    }
+
+    onLoadStart() {
+        // const { onLoadStart } = this.props;
+        // onLoadStart();
+    }
+
+    onPlay() {
+        // const { onPlay } = this.props;
+        // onPlay();
+    }
+
+    onPause() {
+        // const { onPause } = this.props;
+        // onPause();
+    }
+
+    onTimeUpdate() {
+        // const { audioElement, props } = this;
+        // const { onTimeUpdate } = props;
+        // onTimeUpdate(Math.floor(audioElement.currentTime));
+    }
+
+    onVolumeChange() {
+        // const { audioElement, props } = this;
+        // const { muted, volume } = audioElement;
+        // const { onVolumeChange } = props;
+        // onVolumeChange(muted, volume);
+    }
+
+    changeCurrentTime(currentTime) {
+        this.setState({ currentTime })
+        this.audioElement.currentTime = currentTime;
+    }
+
+    changeVolume(volume) {
+        const { audioElement } = this;
+        this.setState({ volume: volume })
+        audioElement.muted = false;
+        audioElement.volume = volume;
+    }
+
+    toggleMuted() {
+        const { audioElement } = this;
+        const { muted } = audioElement;
+        this.setState({ muted: !muted })
+        audioElement.muted = !muted;
+    }
+
+    togglePlay() {
+        const { audioElement } = this;
+        if (audioElement.paused) {
+            audioElement.play();
+        } else {
+            audioElement.pause();
+        }
+    }
+
+    playerShow() {
+        let { volume, currentTime, muted } = this.state;
+        let { activeSong: { isActive, isPlay, song: { id, title, stream_url, artwork_url, duration, user: { username } } } } = this.props;
         return (
             <div>
-                <audio id="audio" src="https://api.soundcloud.com/tracks/203407143/stream?client_id=a281614d7f34dc30b665dfcaa3ed7505"></audio>
+                <audio
+                    id="audio"
+                    onEnded={this.onEnded}
+                    onLoadedMetadata={this.onLoadedMetadata}
+                    onLoadStart={this.onLoadStart}
+                    onPause={this.onPause}
+                    onPlay={this.onPlay}
+                    onTimeUpdate={this.onTimeUpdate}
+                    onVolumeChange={this.onVolumeChange}
+                    ref={(node) => { this.audioElement = node; }}
+                    src={`${stream_url}?client_id=${types.CLIENT_ID}`}
+                />
                 <div className="player">
                     <div className="player__inner container">
                         <div className="player__section player__section--song">
                             <div className="player__song">
-                                <div className="player__song__artwork" style={{ backgroundImage: 'url(https://i1.sndcdn.com/artworks-000100709675-aebru6-t300x300.jpg)' }}></div>
-                                <div className="player__song__main"><a className="player__song__title" href="https://soundredux.io/#/songs/203407143"
-                                    title="">Bezubaan Piku 2015 (official)</a><a className="player__song__username" href="https://soundredux.io/#/users/149149659"
-                                        title="">bollywood latest songs ✔️</a></div>
+                                <div className="player__song__artwork" style={{ backgroundImage: `url(${artwork_url})` }}></div>
+                                <div className="player__song__main">
+                                    <a className="player__song__title" href="#" title={title}>{title}</a>
+                                    <a className="player__song__username" href="#" title={username}>{username}</a>
+                                </div>
                             </div>
                         </div>
                         <div className="player__section">
@@ -31,43 +146,57 @@ class Player extends Component {
                             </div>
                         </div>
                         <div className="player__section player__section--seek">
-                            <div className="slider " role="button">
-                                <div className="slider__bar">
-                                    <div className="slider__bar__fill" style={{ width: '10.6825%' }}>
-                                        <div className="slider__handle" role="button" ></div>
-                                    </div>
-                                </div>
-                            </div>
+                            <Slider
+                                max={duration}
+                                onChange={(this.changeCurrentTime)}
+                                value={currentTime}
+                            />
                         </div>
                         <div className="player__section player__section--time">
                             <div className="player__time">
-                                00:36
-                  <div className="player__time__separator">/</div>
-                                05:37
-                </div>
+                                {formatSeconds(currentTime)}
+                                <div className="player__time__separator">/</div>
+                                {formatSeconds(duration)}
+                            </div>
                         </div>
                         <div className="player__section player__section--options">
                             <div className="player__buttons player__buttons--options">
                                 <div className="player__button " role="button" ><i className="player__button__icon ion-loop"></i></div>
                                 <div className="player__button " role="button" ><i className="player__button__icon ion-shuffle"></i></div>
                                 <div className="player__button " role="button"><i className="player__button__icon ion-android-list"></i></div>
-                                <div className="player__button player__button--volume" role="button" ><i className="player__button__icon ion-android-volume-mute"></i><i
-                                    className="player__button__icon player__button__icon--absolute ion-android-volume-down"></i></div>
+                                <div
+                                    className="player__button player__button--volume"
+                                    onClick={this.toggleMuted}
+                                    role="button"
+                                    tabIndex="0"
+                                >
+                                    <i className={`player__button__icon ion-android-volume-${muted ? 'off' : 'mute'}`} />
+                                    <i className={`player__button__icon player__button__icon--absolute ${volumeClassName(volume)}`} />
+                                </div>
                             </div>
                         </div>
                         <div className="player__section player__section--volume">
-                            <div className="slider " role="button" >
-                                <div className="slider__bar">
-                                    <div className="slider__bar__fill" style={{ width: '22%' }}>
-                                        <div className="slider__handle" role="button"></div>
-                                    </div>
-                                </div>
-                            </div>
+                            <Slider
+                                max={1}
+                                onChange={this.changeVolume}
+                                value={volume}
+                            />
                         </div>
                     </div>
                 </div>
             </div>
+        )
+    }
+
+    render() {
+        let { activeSong: { isActive } } = this.props;
+        return (
+            isActive ? this.playerShow() : null
         );
     }
 }
-export default Player;
+
+const mapStateToProps = state => {
+    return state;
+};
+export default connect(mapStateToProps)(Player);

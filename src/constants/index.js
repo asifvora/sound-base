@@ -1,5 +1,6 @@
 'use strict';
 
+export const CLIENT_ID = 'a281614d7f34dc30b665dfcaa3ed7505';
 //fetch song
 export const FETCH_SONG = "FETCH_SONG";
 export const FETCH_SONG_SUCCESS = "FETCH_SONG_SUCCESS";

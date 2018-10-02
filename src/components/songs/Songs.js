@@ -37,11 +37,11 @@ class Songs extends Component {
         window.removeEventListener('scroll', this.handleScroll);
     }
 
-    handleScroll(event) {
-        let { nextLink, isLoading } = this.state;
+    handleScroll() {
+        let { nextLink } = this.state;
         const { dispatch } = this.props;
         this.setState({ isLoading: true }, () => {
-            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+            if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 200)) {
                 if (this.state.nextLink !== false) {
                     dispatch(fetchMoreSongs(nextLink));
                     this.setState({ nextLink: false, isFetching: false });
@@ -82,7 +82,7 @@ class Songs extends Component {
                             <div className="songs-body-card__avatar" style={{ backgroundImage: `url(${song.user.avatar_url})` }}></div>
                             <div className="songs-body-card__details">
                                 <a className="songs-body-card__title" href="#" title={song.title ? song.title : ''}>{song.title ? song.title : ''}</a>
-                                <a className="songs-body-card__username" href="#" title={song.title ? song.title : ''}>{song.title ? song.title : ''}</a>
+                                <a className="songs-body-card__username" href="#" title={song.user.username ? song.user.username : ''}>{song.user.username ? song.user.username : ''}</a>
                             </div>
                         </div>
                         <div className="popover heart songs-body-card__heart popover--right">
