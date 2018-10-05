@@ -2,11 +2,11 @@
 
 import { combineReducers } from "redux";
 import songs from './SongsList';
-import activeSong from './ActiveSong';
+import player from './Player';
 
 const reducer = combineReducers({
     songs,
-    activeSong
+    player,
 });
 
 export default reducer;

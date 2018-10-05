@@ -2,7 +2,8 @@
 
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchSongs, fetchMoreSongs, playSongRequest } from "../../actions/SongActions";
+import { fetchSongs, fetchMoreSongs } from "../../actions/SongActions";
+import { playSongRequest } from "../../actions/PlayerAction";
 import { spinnerLoader } from "../common";
 
 class Songs extends Component {
@@ -27,10 +28,10 @@ class Songs extends Component {
         window.addEventListener('scroll', this.handleScroll);
     }
 
-    playSongRequest(song, isActive, isActiveId, isPlay) {
-        let isPlayCheck = isActive && isActiveId === song.id ? !isPlay : true;
+    playSongRequest(song, isActive, isActiveId, isPlaying) {
+        let isPlayCheck = isActive && isActiveId === song.id ? !isPlaying : true;
         let { dispatch } = this.props;
-        dispatch(playSongRequest({ isActive: true, isPlay: isPlayCheck, song: song }));
+        dispatch(playSongRequest({ isActive: true, isPlaying: isPlayCheck, song: song }));
     }
 
     componentWillUnmount() {
@@ -70,13 +71,13 @@ class Songs extends Component {
         }
     }
 
-    songsCard(song, key, isActive, isActiveId, isPlay) {
+    songsCard(song, key, isActive, isActiveId, isPlaying) {
         return (
             <div className="row__cell" key={key} style={{ margin: '7px' }}>
                 <div className={isActive && isActiveId === song.id ? `songs-body-card songs-body-card--active` : `songs-body-card`} >
                     <div className="songs-body-card__inner">
-                        <div onClick={() => this.playSongRequest(song, isActive, isActiveId, isPlay)} className="songs-body-card__artwork" style={{ backgroundImage: `url(${song.artwork_url})` }}>
-                            <div className={isActive && isActiveId === song.id ? `artwork-play artwork-play--active` : `artwork-play `} role="button" ><i className={isActive && isActiveId === song.id && isPlay ? `artwork-play__icon ion-radio-waves` : `artwork-play__icon ion-ios-play`}  ></i></div>
+                        <div onClick={() => this.playSongRequest(song, isActive, isActiveId, isPlaying)} className="songs-body-card__artwork" style={{ backgroundImage: `url(${song.artwork_url})` }}>
+                            <div className={isActive && isActiveId === song.id ? `artwork-play artwork-play--active` : `artwork-play `} role="button" ><i className={isActive && isActiveId === song.id && isPlaying ? `artwork-play__icon ion-radio-waves` : `artwork-play__icon ion-ios-play`}  ></i></div>
                         </div>
                         <div className="songs-body-card__main">
                             <div className="songs-body-card__avatar" style={{ backgroundImage: `url(${song.user.avatar_url})` }}></div>
@@ -99,10 +100,10 @@ class Songs extends Component {
     }
 
     songsList() {
-        let { activeSong: { isActive, isPlay, song: { id } } } = this.props;
+        let { player: { isActive, isPlaying, song: { id } } } = this.props;
         let { songs } = this.state;
         return songs && songs.length > 0 ?
-            songs.map((song, key) => { return (this.songsCard(song, key, isActive, id, isPlay)) }) : 'No songs found.';
+            songs.map((song, key) => { return (this.songsCard(song, key, isActive, id, isPlaying)) }) : 'No songs found.';
     }
 
     render() {

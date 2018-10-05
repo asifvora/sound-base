@@ -82,7 +82,3 @@ function fetchMoreSongFailure(err) {
     };
 }
 
-/**
- * playSongRequest
- */
-export const playSongRequest = (data) => ({ type: types.IS_PLAY_SONG_REQUEST, state: data });

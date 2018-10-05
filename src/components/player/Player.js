@@ -6,15 +6,13 @@ import { Slider } from '../Slider';
 import * as types from '../../constants';
 import { formatSeconds } from '../../utils/NumberUtils';
 import volumeClassName from '../../utils/PlayerUtils';
+import { onVolumeChange } from "../../actions/PlayerAction";
 
 class Player extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            volume: 0,
-            currentTime: 0,
-            muted: false,
         }
         this.audioElement = null;
         this.onEnded = this.onEnded.bind(this);
@@ -36,11 +34,11 @@ class Player extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        const { audioElement, props } = this;
-        const { audioUrl } = props;
-        if (prevProps.audioUrl !== audioUrl) {
-            audioElement && audioElement.play();
-        }
+        // const { audioElement, props } = this;
+        // const { audioUrl } = props;
+        // if (prevProps.audioUrl !== audioUrl) {
+        //     audioElement && audioElement.play();
+        // }
     }
 
     onEnded() {
@@ -55,8 +53,12 @@ class Player extends Component {
     }
 
     onLoadStart() {
-        // const { onLoadStart } = this.props;
-        // onLoadStart();
+        let { player: { volume } } = this.props;
+        const { audioElement } = this;
+
+        // const audioElement = document.getElementById('audio');
+        audioElement.play();
+        audioElement.volume = volume;
     }
 
     onPlay() {
@@ -76,29 +78,30 @@ class Player extends Component {
     }
 
     onVolumeChange() {
-        // const { audioElement, props } = this;
-        // const { muted, volume } = audioElement;
-        // const { onVolumeChange } = props;
-        // onVolumeChange(muted, volume);
+        const { audioElement } = this;
+        const { muted, volume } = audioElement;
+        onVolumeChange(muted, volume);
     }
 
     changeCurrentTime(currentTime) {
-        this.setState({ currentTime })
         this.audioElement.currentTime = currentTime;
     }
 
     changeVolume(volume) {
+        let { dispatch } = this.props;
         const { audioElement } = this;
-        this.setState({ volume: volume })
         audioElement.muted = false;
         audioElement.volume = volume;
+        dispatch(onVolumeChange(false, volume));
+
     }
 
     toggleMuted() {
         const { audioElement } = this;
-        const { muted } = audioElement;
-        this.setState({ muted: !muted })
+        const { muted, volume } = audioElement;
+        let { dispatch } = this.props;
         audioElement.muted = !muted;
+        dispatch(onVolumeChange(!muted, volume));
     }
 
     togglePlay() {
@@ -111,8 +114,10 @@ class Player extends Component {
     }
 
     playerShow() {
-        let { volume, currentTime, muted } = this.state;
-        let { activeSong: { isActive, isPlay, song: { id, title, stream_url, artwork_url, duration, user: { username } } } } = this.props;
+        let { player: { isActive, isPlaying, volume, currentTime, muted, song } } = this.props;
+        let { id, title, stream_url, artwork_url, duration, user } = song;
+        let { username } = user;
+
         return (
             <div>
                 <audio
@@ -189,7 +194,8 @@ class Player extends Component {
     }
 
     render() {
-        let { activeSong: { isActive } } = this.props;
+        let { audioElement } = this;
+        let { player: { isActive } } = this.props;
         return (
             isActive ? this.playerShow() : null
         );
