@@ -6,14 +6,12 @@ import { Slider } from '../Slider';
 import * as types from '../../constants';
 import { formatSeconds } from '../../utils/NumberUtils';
 import volumeClassName from '../../utils/PlayerUtils';
-import { onVolumeChange } from "../../actions/PlayerAction";
+import { onVolumeChange, onTimeUpdate, onLoadedMetadata } from "../../actions/PlayerAction";
 
 class Player extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-        }
         this.audioElement = null;
         this.onEnded = this.onEnded.bind(this);
         this.onLoadedMetadata = this.onLoadedMetadata.bind(this);
@@ -47,15 +45,14 @@ class Player extends Component {
     }
 
     onLoadedMetadata() {
-        // const { audioElement, props } = this;
-        // const { onLoadedMetadata } = props;
-        // onLoadedMetadata(Math.floor(audioElement.duration));
+        let { dispatch } = this.props;
+        const { audioElement } = this;
+        dispatch(onLoadedMetadata(Math.floor(audioElement.duration)));
     }
 
     onLoadStart() {
         let { player: { volume } } = this.props;
         const { audioElement } = this;
-
         // const audioElement = document.getElementById('audio');
         audioElement.play();
         audioElement.volume = volume;
@@ -72,19 +69,22 @@ class Player extends Component {
     }
 
     onTimeUpdate() {
-        // const { audioElement, props } = this;
-        // const { onTimeUpdate } = props;
-        // onTimeUpdate(Math.floor(audioElement.currentTime));
+        let { dispatch } = this.props;
+        const { audioElement } = this;
+        dispatch(onTimeUpdate(Math.floor(audioElement.currentTime)));
     }
 
     onVolumeChange() {
+        let { dispatch } = this.props;
         const { audioElement } = this;
         const { muted, volume } = audioElement;
-        onVolumeChange(muted, volume);
+        dispatch(onVolumeChange(muted, volume));
     }
 
     changeCurrentTime(currentTime) {
+        let { dispatch } = this.props;
         this.audioElement.currentTime = currentTime;
+        dispatch(onTimeUpdate(Math.floor(currentTime)));
     }
 
     changeVolume(volume) {
@@ -93,13 +93,12 @@ class Player extends Component {
         audioElement.muted = false;
         audioElement.volume = volume;
         dispatch(onVolumeChange(false, volume));
-
     }
 
     toggleMuted() {
-        const { audioElement } = this;
+        const { audioElement, props } = this;
         const { muted, volume } = audioElement;
-        let { dispatch } = this.props;
+        let { dispatch } = props;
         audioElement.muted = !muted;
         dispatch(onVolumeChange(!muted, volume));
     }
@@ -113,13 +112,13 @@ class Player extends Component {
         }
     }
 
-    playerShow() {
+    render() {
         let { player: { isActive, isPlaying, volume, currentTime, muted, song } } = this.props;
-        let { id, title, stream_url, artwork_url, duration, user } = song;
+        let { id, title, stream_url, artwork_url, duration, user = {} } = song;
         let { username } = user;
 
         return (
-            <div>
+            isActive ? <div>
                 <audio
                     id="audio"
                     onEnded={this.onEnded}
@@ -167,8 +166,8 @@ class Player extends Component {
                         <div className="player__section player__section--options">
                             <div className="player__buttons player__buttons--options">
                                 {/* <div className="player__button " role="button" ><i className="player__button__icon ion-loop"></i></div>
-                                <div className="player__button " role="button" ><i className="player__button__icon ion-shuffle"></i></div>
-                                <div className="player__button " role="button"><i className="player__button__icon ion-android-list"></i></div> */}
+                            <div className="player__button " role="button" ><i className="player__button__icon ion-shuffle"></i></div>
+                            <div className="player__button " role="button"><i className="player__button__icon ion-android-list"></i></div> */}
                                 <div
                                     className="player__button player__button--volume"
                                     onClick={this.toggleMuted}
@@ -189,15 +188,7 @@ class Player extends Component {
                         </div>
                     </div>
                 </div>
-            </div>
-        )
-    }
-
-    render() {
-        let { audioElement } = this;
-        let { player: { isActive } } = this.props;
-        return (
-            isActive ? this.playerShow() : null
+            </div> : null
         );
     }
 }
