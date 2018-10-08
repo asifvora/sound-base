@@ -2,6 +2,7 @@
 
 import React, { Component } from "react";
 import { Link, withRouter } from 'react-router-dom';
+import { NavSearch } from '../nav';
 
 class Header extends Component {
 
@@ -10,7 +11,6 @@ class Header extends Component {
     }
 
     render() {
-
         return (
             <div >
                 <div className="nav">
@@ -20,10 +20,7 @@ class Header extends Component {
                         </div>
                         <div className="nav__section nav__section--session"></div>
                         <div className="nav__section nav__section--search">
-                            <div className="nav-search">
-                                <i className="nav-search__icon ion-search"></i>
-                                <input type="text" className="nav-search__input" placeholder="SEARCH" />
-                            </div>
+                            <NavSearch />
                         </div>
                     </div>
                 </div>
