@@ -4,6 +4,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchSongs, fetchMoreSongs } from "../../actions/SongActions";
 import { playSongRequest } from "../../actions/PlayerAction";
+import { onPause, onPlay } from "../../actions/PlayerAction";
 import { spinnerLoader } from "../common";
 
 class Songs extends Component {
@@ -71,12 +72,33 @@ class Songs extends Component {
         }
     }
 
+    onPlay() {
+        let { dispatch } = this.props;
+        dispatch(onPlay());
+    }
+
+    onPause() {
+        let { dispatch } = this.props;
+        dispatch(onPause());
+    }
+
+    togglePlay(isPlaying) {
+        const audioElement = document.getElementById('audio');
+        if (isPlaying) {
+            this.onPause();
+            audioElement.pause();
+        } else {
+            this.onPlay();
+            audioElement.play();
+        }
+    }
+
     songsCard(song, key, isActive, isActiveId, isPlaying) {
         return (
             <div className="row__cell" key={key} style={{ margin: '7px' }}>
                 <div className={isActive && isActiveId === song.id ? `songs-body-card songs-body-card--active` : `songs-body-card`} >
                     <div className="songs-body-card__inner">
-                        <div onClick={() => this.playSongRequest(song, isActive, isActiveId, isPlaying)} className="songs-body-card__artwork" style={{ backgroundImage: `url(${song.artwork_url})` }}>
+                        <div onClick={() => (isActive && isActiveId === song.id ? this.togglePlay(isPlaying) : this.playSongRequest(song, isActive, isActiveId, isPlaying))} className="songs-body-card__artwork" style={{ backgroundImage: `url(${song.artwork_url})` }}>
                             <div className={isActive && isActiveId === song.id ? `artwork-play artwork-play--active` : `artwork-play `} role="button" ><i className={isActive && isActiveId === song.id && isPlaying ? `artwork-play__icon ion-radio-waves` : `artwork-play__icon ion-ios-play`}  ></i></div>
                         </div>
                         <div className="songs-body-card__main">
