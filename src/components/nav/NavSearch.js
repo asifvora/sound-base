@@ -29,14 +29,9 @@ class NavSearch extends Component {
 
     onKeyPress(e) {
         if (e.charCode === 13) {
-            // const { navigateTo } = this.props;
             const value = e.currentTarget.value.trim();
             if (value !== '') {
-                // navigateTo({
-                //     keys: {},
-                //     path: SONGS_PATH,
-                //     options: { q: value },
-                // });
+                //do something
             }
         }
     }
