@@ -8,7 +8,7 @@ import { API } from '../utils/API';
  */
 export function fetchSongs(limit, linkedPartitioning) {
     return dispatch =>
-        API.getSongs(`https://api.soundcloud.com/tracks?client_id=${types.CLIENT_ID}&limit=${limit}&linked_partitioning=${linkedPartitioning}&offset=1`)
+        API.getSongs(`https://api.soundcloud.com/tracks?client_id=${types.CLIENT_ID}&limit=${limit}&linked_partitioning=${linkedPartitioning}&offset=1&tags=bollywood`)
             .then(json => dispatch(fetchSongSuccess(json)))
             .catch(err => dispatch(fetchSongFailure(err)));
 }
