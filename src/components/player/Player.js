@@ -150,7 +150,7 @@ class Player extends Component {
                     <div className="player__inner container">
                         <div className="player__section player__section--song">
                             <div className="player__song">
-                                <div className="player__song__artwork" style={{ backgroundImage: `url(${artwork_url})` }}></div>
+                                <div className="player__song__artwork" style={{ backgroundImage: artwork_url ? `url(${artwork_url})` : `` }}></div>
                                 <div className="player__song__main">
                                     <a className="player__song__title" href="#" title={title}>{title}</a>
                                     <a className="player__song__username" href="#" title={username}>{username}</a>
