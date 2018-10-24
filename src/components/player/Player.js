@@ -6,7 +6,7 @@ import { Slider } from '../Slider';
 import * as types from '../../constants';
 import { formatSeconds } from '../../utils/NumberUtils';
 import volumeClassName from '../../utils/PlayerUtils';
-import { onVolumeChange, onTimeUpdate, onLoadedMetadata, onPause, onPlay } from "../../actions/PlayerAction";
+import { onVolumeChange, onTimeUpdate, onLoadedMetadata, onPause, onPlay, playPrevSong, playNextSong } from "../../actions/PlayerAction";
 
 class Player extends Component {
 
@@ -107,6 +107,16 @@ class Player extends Component {
         dispatch(onVolumeChange(!muted, volume));
     }
 
+    playPrevSong() {
+        let { dispatch } = this.props;
+        dispatch(playPrevSong());
+    }
+
+    playNextSong() {
+        let { dispatch } = this.props;
+        dispatch(playNextSong());
+    }
+
     togglePlay() {
         const { audioElement } = this;
         if (audioElement.paused) {
@@ -150,11 +160,11 @@ class Player extends Component {
                         </div>
                         <div className="player__section">
                             <div className="player__buttons">
-                                <div className="player__button" role="button" ><i className="player__button__icon ion-ios-rewind"></i></div>
+                                <div className="player__button" role="button" onClick={() => this.playPrevSong()}><i className="player__button__icon ion-ios-rewind"></i></div>
                                 <div className="player__button" onClick={this.togglePlay} role="button" tabIndex="0" >
                                     <i className={`player__button__icon ion-ios-${isPlaying ? 'pause' : 'play'}`} />
                                 </div>
-                                <div className="player__button" role="button"><i className="player__button__icon ion-ios-fastforward"></i></div>
+                                <div className="player__button" role="button" onClick={() => this.playNextSong()}><i className="player__button__icon ion-ios-fastforward"></i></div>
                             </div>
                         </div>
                         <div className="player__section player__section--seek">

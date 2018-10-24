@@ -11,7 +11,7 @@ const initialState = {
     muted: false,
     repeat: false,
     shuffle: false,
-    volume: 1,
+    volume: 0.1,
     playingIndex: null,
     playlist: null,
 };
@@ -25,6 +25,7 @@ const Player = (state = initialState, action) => {
                 isActive: action.state.isActive,
                 isPlaying: action.state.isPlaying,
                 song: action.state.song,
+                playingIndex: action.state.playingIndex
             };
         case types.ON_LOAD_START:
             return {
@@ -67,8 +68,9 @@ const Player = (state = initialState, action) => {
         case types.PLAY_SONG:
             return {
                 ...state,
-                playingIndex: action.playingIndex,
-                playlist: action.playlist,
+                isPlaying: action.isPlaying,
+                song: action.song,
+                playingIndex: action.playingIndex
             };
 
         case types.TOGGLE_REPEAT:

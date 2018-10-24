@@ -1,4 +1,5 @@
 import * as types from '../constants';
+import { getPlayingIndex, getPlaylists, getPrevIndex, getNextIndex } from '../selectors/PlayerSelectors';
 
 
 /**
@@ -34,13 +35,33 @@ export const onVolumeChange = (muted, volume) => ({
     volume,
 });
 
-export const playSong = (playlist, playingIndex) => ({
+export const playSong = (isPlaying, song, playingIndex) => ({
     type: types.PLAY_SONG,
-    playlist,
+    isPlaying,
+    song,
     playingIndex,
 });
 
+export const playPrevSong = () => (dispatch, getState) => {
+    const state = getState();
+    const playlist = getPlaylists(state);
+    const prevIndex = getPrevIndex(state);
 
-export const toggleRepeat = () => ({ type: types.TOGGLE_REPEAT });
+    if (prevIndex !== null) {
+        dispatch(playSong(true, playlist[prevIndex], prevIndex));
+    }
+};
 
-export const toggleShuffle = () => ({ type: types.TOGGLE_SHUFFLE });
+export const playNextSong = () => (dispatch, getState) => {
+    const state = getState();
+    const playlist = getPlaylists(state);
+    const nextIndex = getNextIndex(state);
+
+    if (nextIndex !== 0) {
+        dispatch(playSong(true, playlist[nextIndex], nextIndex));
+    }
+};
+
+// export const toggleRepeat = () => ({ type: types.TOGGLE_REPEAT });
+
+// export const toggleShuffle = () => ({ type: types.TOGGLE_SHUFFLE });
