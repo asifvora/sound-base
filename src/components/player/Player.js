@@ -44,8 +44,7 @@ class Player extends Component {
     }
 
     onEnded() {
-        // const { playNextSong } = this.props;
-        // playNextSong();
+        this.playNextSong();
     }
 
     onLoadedMetadata() {
