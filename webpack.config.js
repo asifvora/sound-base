@@ -10,7 +10,14 @@ const htmlPlugin = new HtmlWebPackPlugin({ favicon: 'public/favicon.ico', templa
 const cssPlugin = new MiniCssExtractPlugin({ filename: '[name].css' });
 const cleanPlugin = new CleanWebpackPlugin(['dist']);
 const generateSWPlugin = new WorkboxPlugin.GenerateSW({ clientsClaim: true, skipWaiting: true });
-const uglifyPlugin = new UglifyJsPlugin({ cache: true, parallel: true, sourceMap: true });
+const uglifyPlugin = new UglifyJsPlugin({
+    cache: true, parallel: true, sourceMap: true,
+    uglifyOptions: {
+        compress: {
+            unused: false
+        }
+    }
+});
 const definePlugin = new webpack.DefinePlugin({
     'process.env': {
         'API_ENDPOINT': JSON.stringify('https://api.soundcloud.com/'),
