@@ -15,3 +15,13 @@ export function spinnerLoader() {
         </div>
     )
 }
+
+export function noRecordFound(msg) {
+    return (
+        <div className="loader loader--full">
+            <div className="loader__rects">
+                <h1>{msg}</h1>
+            </div>
+        </div>
+    )
+}

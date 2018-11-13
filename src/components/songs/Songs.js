@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { fetchSongs, fetchMoreSongs } from "../../actions/SongActions";
 import { playSongRequest } from "../../actions/PlayerAction";
 import { onPause, onPlay } from "../../actions/PlayerAction";
-import { spinnerLoader } from "../common";
+import { spinnerLoader, noRecordFound } from "../common";
 
 class Songs extends Component {
 
@@ -124,7 +124,7 @@ class Songs extends Component {
         let { player: { isActive, isPlaying, song: { id } } } = this.props;
         let { songs } = this.state;
         return songs && songs.length > 0 ?
-            songs.map((song, key) => { return (this.songsCard(song, key, isActive, id, isPlaying)) }) : 'No songs found.';
+            songs.map((song, key) => { return (this.songsCard(song, key, isActive, id, isPlaying)) }) : noRecordFound('No songs found.');
     }
 
     render() {

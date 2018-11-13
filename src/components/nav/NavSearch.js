@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { fetchSearchSongs } from "../../actions/SongActions";
 
 class NavSearch extends Component {
@@ -15,8 +16,6 @@ class NavSearch extends Component {
     }
 
     componentDidMount() {
-        let match = this.props;
-        console.log('this.props', match);
         document.addEventListener('keydown', this.onKeyDown, false);
     }
 
@@ -41,9 +40,13 @@ class NavSearch extends Component {
         if (e.charCode === 13) {
             let query = e.currentTarget.value.trim();
             if (query !== '') {
-                let pathname = `/songs/search/${query}`;
-                dispatch(fetchSearchSongs(limit, linkedPartitioning, query));
-                this.props.history.push(pathname);
+                let routeName = `/songs/search/${query}`;
+                let { location: { pathname = null } } = this.props;
+                if (pathname === routeName) {
+                    dispatch(fetchSearchSongs(limit, linkedPartitioning, query));
+                } else {
+                    this.props.history.push(routeName);
+                }
             }
         }
     }
@@ -64,4 +67,4 @@ class NavSearch extends Component {
     }
 }
 
-export default NavSearch;
+export default withRouter(NavSearch);

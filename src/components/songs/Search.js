@@ -2,10 +2,10 @@
 
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchSongs, fetchMoreSongs, fetchSearchSongs } from "../../actions/SongActions";
+import { fetchMoreSongs, fetchSearchSongs } from "../../actions/SongActions";
 import { playSongRequest } from "../../actions/PlayerAction";
 import { onPause, onPlay } from "../../actions/PlayerAction";
-import { spinnerLoader } from "../common";
+import { spinnerLoader, noRecordFound } from "../common";
 
 class Search extends Component {
 
@@ -25,9 +25,6 @@ class Search extends Component {
     componentDidMount() {
         let { limit, linkedPartitioning } = this.state;
         let { match: { params: { query } } } = this.props;
-        let props = this.props;
-        console.log('props', props);
-        console.log('query', query)
         let { dispatch } = this.props;
         dispatch(fetchSearchSongs(limit, linkedPartitioning, query));
         window.addEventListener('scroll', this.handleScroll);
@@ -128,7 +125,7 @@ class Search extends Component {
         let { player: { isActive, isPlaying, song: { id } } } = this.props;
         let { songs } = this.state;
         return songs && songs.length > 0 ?
-            songs.map((song, key) => { return (this.songsCard(song, key, isActive, id, isPlaying)) }) : <center><div>{'No songs found.'}</div></center>;
+            songs.map((song, key) => { return (this.songsCard(song, key, isActive, id, isPlaying)) }) : noRecordFound('No songs found.');
     }
 
     render() {
