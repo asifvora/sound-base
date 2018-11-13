@@ -11,7 +11,7 @@ const initialState = {
     muted: false,
     repeat: false,
     shuffle: false,
-    volume: 0.1,
+    volume: 1,
     playingIndex: null,
     playlist: null,
 };
