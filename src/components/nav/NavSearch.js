@@ -1,15 +1,22 @@
 import React, { Component } from 'react';
+import { fetchSearchSongs } from "../../actions/SongActions";
 
 class NavSearch extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            limit: 50,
+            linkedPartitioning: 1
+        }
         this.onKeyDown = this.onKeyDown.bind(this);
         this.onKeyPress = this.onKeyPress.bind(this);
         this.input = null;
     }
 
     componentDidMount() {
+        let match = this.props;
+        console.log('this.props', match);
         document.addEventListener('keydown', this.onKeyDown, false);
     }
 
@@ -28,10 +35,15 @@ class NavSearch extends Component {
     }
 
     onKeyPress(e) {
+        let { dispatch } = this.props;
+        let { limit, linkedPartitioning } = this.state;
+
         if (e.charCode === 13) {
-            const value = e.currentTarget.value.trim();
-            if (value !== '') {
-                //do something
+            let query = e.currentTarget.value.trim();
+            if (query !== '') {
+                let pathname = `/songs/search/${query}`;
+                dispatch(fetchSearchSongs(limit, linkedPartitioning, query));
+                this.props.history.push(pathname);
             }
         }
     }

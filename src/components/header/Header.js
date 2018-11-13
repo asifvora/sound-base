@@ -2,6 +2,7 @@
 
 import React, { Component } from "react";
 import { Link, withRouter } from 'react-router-dom';
+import { connect } from "react-redux";
 import { NavSearch } from '../nav';
 
 class Header extends Component {
@@ -20,7 +21,7 @@ class Header extends Component {
                         </div>
                         <div className="nav__section nav__section--session"></div>
                         <div className="nav__section nav__section--search">
-                            <NavSearch />
+                            <NavSearch {...this.props}/>
                         </div>
                     </div>
                 </div>
@@ -65,4 +66,9 @@ class Header extends Component {
         );
     }
 }
-export default withRouter(Header);
+
+const mapStateToProps = state => {
+    return state;
+};
+const HeaderMenu = connect(mapStateToProps)(Header);
+export default withRouter(HeaderMenu);

@@ -5,6 +5,7 @@ import { HashRouter as Router, Route, Switch, Redirect, BrowserRouter } from 're
 import { Header } from "./components/header";
 import { Footer } from "./components/footer";
 import { Songs } from "./components/songs";
+import { Search } from "./components/songs";
 import { NotFound } from "./components/notFound";
 import { createBrowserHistory } from 'history';
 export const history = createBrowserHistory();
@@ -19,6 +20,7 @@ class App extends BrowserRouter {
           <Switch>
             <Route exact path="/" component={Songs} />
             <Route exact path="/songs" component={Songs} />
+            <Route exact path="/songs/search/:query" component={Search} />
             <Route path='/404' component={NotFound} />
             <Redirect from='*' to='/404' />
           </Switch>

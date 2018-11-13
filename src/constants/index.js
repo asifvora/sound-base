@@ -1,6 +1,7 @@
 'use strict';
 
 export const CLIENT_ID = 'a281614d7f34dc30b665dfcaa3ed7505';
+export const BASE_URL = 'https://api.soundcloud.com/';
 export const FETCH_SONG = "FETCH_SONG";
 export const FETCH_SONG_SUCCESS = "FETCH_SONG_SUCCESS";
 export const FETCH_SONG_FAILURE = "FETCH_SONG_FAILURE";
