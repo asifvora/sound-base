@@ -41,12 +41,8 @@ class NavSearch extends Component {
             let query = e.currentTarget.value.trim();
             if (query !== '') {
                 let routeName = `/songs/search/${query}`;
-                let { location: { pathname = null } } = this.props;
-                if (pathname === routeName) {
-                    dispatch(fetchSearchSongs(limit, linkedPartitioning, query));
-                } else {
-                    this.props.history.push(routeName);
-                }
+                dispatch(fetchSearchSongs(limit, linkedPartitioning, query));
+                this.props.history.push(routeName);
             }
         }
     }
