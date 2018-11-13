@@ -6,18 +6,11 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
-const htmlPlugin = new HtmlWebPackPlugin({ favicon: 'public/favicon.ico', template: "./public/index.html", filename: "./index.html" });
+const htmlPlugin = new HtmlWebPackPlugin({ favicon: 'public/favicon.ico', template: "public/index.html", filename: "index.html" });
 const cssPlugin = new MiniCssExtractPlugin({ filename: '[name].css' });
 const cleanPlugin = new CleanWebpackPlugin(['dist']);
 const generateSWPlugin = new WorkboxPlugin.GenerateSW({ clientsClaim: true, skipWaiting: true });
-const uglifyPlugin = new UglifyJsPlugin({
-    cache: true, parallel: true, sourceMap: true,
-    uglifyOptions: {
-        compress: {
-            unused: false
-        }
-    }
-});
+const uglifyPlugin = new UglifyJsPlugin({ cache: true, parallel: true, sourceMap: true });
 const definePlugin = new webpack.DefinePlugin({
     'process.env': {
         'API_ENDPOINT': JSON.stringify('https://api.soundcloud.com/'),

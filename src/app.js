@@ -1,17 +1,19 @@
 'use strict';
 
-import React, { Component } from 'react';
-import { BrowserRouter as HashRouter, Route, Switch, Redirect } from 'react-router-dom';
+import React from 'react';
+import { HashRouter as Router, Route, Switch, Redirect, BrowserRouter } from 'react-router-dom';
 import { Header } from "./components/header";
 import { Footer } from "./components/footer";
 import { Songs } from "./components/songs";
 import { NotFound } from "./components/notFound";
+import { createBrowserHistory } from 'history';
+export const history = createBrowserHistory();
 
-class App extends Component {
+class App extends BrowserRouter {
 
   render() {
     return (
-      <HashRouter>
+      <Router history={history}>
         <div>
           <Header />
           <Switch>
@@ -22,7 +24,7 @@ class App extends Component {
           </Switch>
           <Footer />
         </div>
-      </HashRouter >
+      </Router >
     );
   }
 }
