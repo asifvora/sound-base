@@ -129,6 +129,9 @@ class Songs extends Component {
 
     render() {
         let { isLoading, success } = this.state;
+        let { player: { isActive, song: { title = null } } } = this.props;
+        (isActive && title ? document.title = `${title} - Sound Base` : 'Sound Base')
+
         return (
             <div className="container">
                 <div className="songs-body">
