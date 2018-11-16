@@ -1248,7 +1248,7 @@ a:hover{
 @media only screen and (max-width:360px) {
   .nav__section--search {
       width: 120px;
-      padding: 6px 6px 6px 30px;
+      padding: 6px 6px 6px 0px;
       color: #e3e3e3;
       font-size: 16px;
       font-weight: 300;
