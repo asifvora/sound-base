@@ -853,12 +853,14 @@ a:hover{
   background-color:#d8564a
 }
 .container{
-  width:1170px;
+  /* width:1170px; */
+  width:71%;
   margin:0 auto
 }
 @media only screen and (min-width:320px) and (max-width:735px){
   .container{
-      width:100%
+      /* width:100% */
+      width:71%
   }
 }
 .heart__inner{
