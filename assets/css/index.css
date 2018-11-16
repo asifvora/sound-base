@@ -1232,9 +1232,9 @@ a:hover{
   outline:0
 }
 
-@media only screen and (min-width:321px) {
+@media only screen and (min-width:361px) {
   .nav__section--search {
-      width: 150px;
+      width: 160px;
       padding:6px 6px 6px 30px;
       color: #e3e3e3;
       font-size: 18px;
@@ -1245,7 +1245,7 @@ a:hover{
   }
 }
 
-@media only screen and (max-width:320px) {
+@media only screen and (max-width:360px) {
   .nav__section--search {
       width: 120px;
       padding: 6px 6px 6px 30px;
