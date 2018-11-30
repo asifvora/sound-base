@@ -6,6 +6,11 @@ import { fetchSongs, fetchMoreSongs } from "../../actions/SongActions";
 import { playSongRequest } from "../../actions/PlayerAction";
 import { onPause, onPlay } from "../../actions/PlayerAction";
 import { spinnerLoader, noRecordFound } from "../common";
+import GoogleAd from '../adds/GoogleAd';
+const style = {
+    marginTop: '15px',
+    marginBottom: '20px'
+};
 
 class Songs extends Component {
 
@@ -134,6 +139,12 @@ class Songs extends Component {
 
         return (
             <div className="container">
+                {/* <GoogleAd
+                    client="ca-pub-6358568915708823"
+                    slot="6358568915708823"
+                    format="auto"
+                    wrapperDivStyle={style}
+                /> */}
                 <div className="songs-body">
                     {success &&
                         <div >
